@@ -1,0 +1,51 @@
+{
+  "name": "popup",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "@types/jest": "^24.9.1",
+    "@types/node": "^12.12.47",
+    "@types/react": "^16.9.36",
+    "@types/react-dom": "^16.9.8",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "^3.4.1",
+    "tailwindcss": "^1.8.13",
+    "typescript": "^3.7.5"
+  },
+  "scripts": {
+    "build:css": "postcss src/index.css -o src/output.css",
+    "watch:build": "npm run build:css && cra-build-watch -v --build-path ../../dist/popup",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@fullhuman/postcss-purgecss": "^3.0.0",
+    "autoprefixer": "^9.8.6",
+    "cssnano": "^4.1.10",
+    "postcss": "^8.1.1",
+    "postcss-cli": "^8.1.0",
+    "postcss-combine-duplicated-selectors": "^10.0.2",
+    "postcss-merge-longhand": "^4.0.11"
+  }
+}
