@@ -28,20 +28,16 @@ export const scriptVoltaire = async function () {
     var currentRange = undefined;
     for (var i = 0; i < text1.length; i++) {
       if (text1[i] !== text2[i]) {
-        //Found a diff!
         if (currentRange === undefined) {
-          //Start a new range
           currentRange = [i];
         }
       }
       if (currentRange !== undefined && text1[i] === text2[i]) {
-        //End of range!
         currentRange.push(i);
         diffRange.push(currentRange);
         currentRange = undefined;
       }
     }
-    //Push any last range if there's still one at the end
     if (currentRange !== undefined) {
       currentRange.push(i);
       diffRange.push(currentRange);
@@ -59,25 +55,11 @@ export const scriptVoltaire = async function () {
     return sentenceArray.join("");
   };
 
-  chrome.runtime.onConnect.addListener((port) => {
+  const listener = (port: any) => {
     port.onMessage.addListener((message: MessageType) => {
-      const lastSentences: string[] = [];
       if (message.type === "startSession") {
         port.postMessage(getSentence());
-        const { observe } = new MutationObserver(() => {
-          const sentence = getSentence();
-          changeCardSpan(sentence);
-          if (!lastSentences.includes(sentence)) {
-            lastSentences.push(sentence);
-            port.postMessage(sentence);
-          }
-        });
-
-        observe(document, {
-          subtree: true,
-          attributes: true,
-          childList: true,
-        });
+        chrome.runtime.onConnect.removeListener(listener);
       } else if (message.type === "sentenceResponse") {
         const { value } = message;
         const card = document.getElementById("cardou")!;
@@ -112,10 +94,15 @@ export const scriptVoltaire = async function () {
         } else {
           card.style.backgroundColor = "#28a745";
           span.style.color = "white";
-          changeCardSpan(`<h1>Correct</h1>`);
+          changeCardSpan(`<h1>Correct</h1>
+          <div>
+          <span>Bon: ${message.value.text}</span>
+          </div>
+          `);
         }
-        // changeCardSpan(JSON.stringify(message.value));
       }
     });
-  });
+  };
+
+  chrome.runtime.onConnect.addListener(listener);
 };
