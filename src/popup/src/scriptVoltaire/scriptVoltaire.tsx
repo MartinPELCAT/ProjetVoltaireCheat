@@ -2,7 +2,15 @@ import { MessageType } from "../types/ChromeRuntime";
 
 export const scriptVoltaire = async function () {
   if (!document.getElementById("cardou")) {
+    const close = document.createElement("div");
+    close.innerHTML = "X";
+    close.style.color = "white";
+    close.style.position = "absolute";
+    close.style.top = "2px";
+    close.style.right = "2px";
+
     const card = document.createElement("div");
+    card.appendChild(close);
     card.id = "cardou";
     card.style.position = "fixed";
     card.style.bottom = "0";
@@ -12,7 +20,9 @@ export const scriptVoltaire = async function () {
     card.style.zIndex = "9999";
     card.style.padding = "10px";
     card.style.backgroundColor = "gray";
-
+    close.addEventListener("click", () => {
+      card.remove();
+    });
     const span = document.createElement("span");
     span.id = "mySpan";
     card.appendChild(span);
