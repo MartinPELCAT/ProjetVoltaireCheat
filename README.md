@@ -46,7 +46,9 @@ Mettez l'extension en "PIN"
 
 ## Utilisation.
 
+
 Une fois que vous êtes en train de faire un test ou un exercice, cliquez sur l'icon de l’extention.
+FYI: Il faut cliquer sur l'icon à chaque nouvelle phrase.
 Si tous se passe bien, un carré de couleur s'affiche en bas a gauche de l'écran.
 Vert: Reverso n'as pas detecté de problème avec la phrase. Ca ne veux pas dire qu'il n'y a pas de fautes.
 Rouge: Le texte change de couleur à l'endroit de la faute.
