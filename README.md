@@ -53,6 +53,11 @@ Si tous se passe bien, un carré de couleur s'affiche en bas a gauche de l'écra
 Vert: Reverso n'as pas detecté de problème avec la phrase. Ca ne veux pas dire qu'il n'y a pas de fautes.
 Rouge: Le texte change de couleur à l'endroit de la faute.
 
+<img width="2560" alt="image" src="https://github.com/MartinPELCAT/ProjetVoltaireCheat/assets/35460122/48335db2-d7c6-4ae4-873c-a69c2c071416">
+<img width="2089" alt="image" src="https://github.com/MartinPELCAT/ProjetVoltaireCheat/assets/35460122/5ad6a7b3-2f19-4b97-b0f7-bc467fa5072a">
+
+
+
 Normalement, si vous n'utiliez que l'extension vous avez plus de 50% de réussite !
 
 
