@@ -34,22 +34,21 @@ export const scriptVoltaire = async function () {
   };
 
   const getDiff = (text1: string, text2: string) => {
-    var diffRange = [];
-    var currentRange = undefined;
-    for (var i = 0; i < text1.length; i++) {
+    const diffRange = [];
+    let currentRange = undefined;
+    for (let i = 0; i < text1.length; i++) {
       if (text1[i] !== text2[i]) {
         if (currentRange === undefined) {
           currentRange = [i];
         }
-      }
-      if (currentRange !== undefined && text1[i] === text2[i]) {
+      } else if (currentRange !== undefined) {
         currentRange.push(i);
         diffRange.push(currentRange);
         currentRange = undefined;
       }
     }
     if (currentRange !== undefined) {
-      currentRange.push(i);
+      currentRange.push(text1.length - 1);
       diffRange.push(currentRange);
     }
     return diffRange;
@@ -65,7 +64,7 @@ export const scriptVoltaire = async function () {
     return sentenceArray.join("");
   };
 
-  const listener = (port: any) => {
+  const listener = (port: chrome.runtime.Port) => {
     port.onMessage.addListener((message: MessageType) => {
       if (message.type === "startSession") {
         port.postMessage(getSentence());
@@ -80,11 +79,11 @@ export const scriptVoltaire = async function () {
           const diff = getDiff(getSentence(), message.value.text);
           let sen = getSentence();
           //We have to loop backwards, because
-          for (var i = diff.length - 1; i >= 0; i--) {
-            var range = diff[i];
+          for (let i = diff.length - 1; i >= 0; i--) {
+            const range = diff[i];
             //Inject spans around the range
-            var s = range[0]; //start
-            var e = range[1]; //end
+            const s = range[0]; //start
+            const e = range[1]; //end
             sen =
               sen.slice(0, s) +
               "<strong style='color: lawngreen'>" +

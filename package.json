@@ -1,47 +1,29 @@
 {
-  "name": "twitch-extention-hide-auto-collect",
+  "name": "project-voltaire-cheat",
   "version": "1.0.0",
-  "description": "Chrome extention to hide chat and auto collect gifts",
+  "description": "Projet voltaire extension cheat",
+  "private": true,
   "scripts": {
-    "clean": "rm -rf dist && cpy manifest.json dist && cpy src/assets/* dist/assets",
+    "clean": "rm -rf dist && mkdir dist && mkdir dist/assets && cp manifest.json dist && cp -r src/assets/* dist/assets/",
     "prebuild": "npm run clean",
-    "build:contentscript-background": "NODE_ENV=production webpack --config webpack.config.js",
-    "build:popup": "INLINE_RUNTIME_CHUNK=false npm run watch:build --prefix src/popup && cd src/popup/build && cpy * /static/* ../../../dist/popup --parents",
-    "build": "npm-run-all build:*",
-    "prewatch": "npm run clean",
-    "watch:contentscript-background": "NODE_ENV=development webpack --config webpack.config.js -w",
-    "watch:popup": "npm run watch:build --prefix src/popup",
-    "watch": "npm-run-all --parallel watch:*",
-    "zip": "bestzip extension.zip dist/*"
+    "build:popup": "yarn --cwd src/popup/ run build",
+    "build:background": "tsc --project src/background/tsconfig.json",
+    "build": "yarn build:popup && yarn build:background && yarn zip",
+    "zip": "zip -r extension.zip dist"
   },
   "keywords": [
     "chrome",
     "extension",
     "typescript",
     "react",
-    "twitch"
+    "projet voltaire"
   ],
   "author": "Martin PELCAT",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@types/chrome": "0.0.115",
     "@types/node": "14.0.13",
-    "awesome-typescript-loader": "^5.2.1",
-    "bestzip": "2.1.7",
-    "cpy-cli": "2.0.0",
-    "cra-build-watch": "3.0.0",
-    "css-loader": "3.2.1",
-    "mini-css-extract-plugin": "^0.8.0",
-    "node-sass": "^4.14.1",
-    "npm-run-all": "^4.1.5",
-    "sass-loader": "8.0.0",
-    "ts-node": "8.5.4",
-    "tslint": "5.20.1",
-    "typescript": "^3.9.5",
-    "webpack": "^4.44.2",
-    "webpack-cli": "3.3.10"
+    "typescript": "^5.3.3"
   },
-  "dependencies": {
-    "axios": "^0.20.0"
-  }
+  "dependencies": {}
 }
