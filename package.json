@@ -19,7 +19,7 @@
     "projet voltaire"
   ],
   "author": "Martin PELCAT",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "devDependencies": {
     "@types/chrome": "0.0.115",
     "@types/node": "14.0.13",
