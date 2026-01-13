@@ -1,3 +1,5 @@
+# Voir https://github.com/Tezay/ProjetVoltaireCheat
+
 # ProjetVoltaireCheat - _Si ça marche tant mieux si ça marche pas tant pis_
 
 Extension prend la phrase du projet voltair, regarde dans reverso correcteur d’orthographe si elle est juste et affiche l'endroit de la faute si il y en a une.
